@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISD Creative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    .hero {
+      background-color: #000;
+      padding: 4rem 2rem;
+      text-align: center;
+      border-bottom: 2px solid #d90000;
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: 2.5rem;
+    }
+    .btn {
+      background-color: #d90000;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #b00000;
+    }
+    .value-prop, .services, .contact, .about {
+      padding: 2rem 0;
+    }
+    .value-block, .service-block {
+      margin: 1rem 0;
+    }
+    .split {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .split > div {
+      flex: 1;
+      min-width: 280px;
+    }
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input, textarea, select {
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: none;
+    }
+    .cta-strip {
+      background-color: #d90000;
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Creative Power for Fitness Coaches Who Sell.</h1>
+    <button class="btn">Get the Launch Toolkit</button>
+  </div>  <div class="container value-prop">
+    <div class="value-block">Plug & play design systems</div>
+    <div class="value-block">Built to convert, not just look pretty</div>
+    <div class="value-block">Designed for digital fitness brands</div>
+  </div>  <div class="container">
+    <h2>Launch Toolkit Preview</h2>
+    <p>[Image mockup + Short Benefit List]</p>
+  </div>  <div class="cta-strip">
+    <h2>Done wasting time on launches that flop? Let’s fix it.</h2>
+    <button class="btn">Work With Us</button>
+  </div>  <div class="container about">
+    <h2>Who We Are</h2>
+    <p>We’re a team of creative nerds helping fitness creators turn digital ideas into real revenue.</p>
+    <h3>Why ISD Creative</h3>
+    <ul>
+      <li>Results-focused</li>
+      <li>Templates that convert</li>
+      <li>Systems that save time</li>
+    </ul>
+  </div>  <div class="container services">
+    <h2>Services / Featured Products</h2>
+    <div class="split">
+      <div>
+        <h3>Launch Toolkit</h3>
+        <p>[Image + mini description + link to DM or calendar]</p>
+      </div>
+      <div>
+        <h3>Custom Creative Projects</h3>
+        <p>Branding kits, page design, reels, etc.</p>
+      </div>
+    </div>
+  </div>  <div class="container contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="IG Handle (optional)">
+      <select>
+        <option>Toolkit</option>
+        <option>Custom Project</option>
+        <option>General Q</option>
+      </select>
+      <textarea placeholder="Your Message"></textarea>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </div>  <div class="container">
+    <p>DM us @isdcreative to get started instantly.</p>
+  </div>
+</body>
+</html>
