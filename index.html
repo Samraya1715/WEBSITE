@@ -1,131 +1,273 @@
-<!DOCTYPE html><html lang="en">
+<<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ISD Creative</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<style>
-    body {
-      margin: 0;
-      font-family: 'Inter', 'Poppins', sans-serif;
-      background-color: #000;
-      color: #fff;
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-    h1, h2, h3 {
-      font-weight: 700;
-    }
-    .hero {
-      background-color: #000;
-      padding: 4rem 2rem;
-      text-align: center;
-      border-bottom: 2px solid #d90000;
-    }
-    .hero h1 {
-      color: #fff;
-      font-size: 2.5rem;
-    }
-    .btn {
-      background-color: #d90000;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background-color: #b00000;
-    }
-    .value-prop, .services, .contact, .about {
-      padding: 2rem 0;
-    }
-    .value-block, .service-block {
-      margin: 1rem 0;
-    }
-    .split {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .split > div {
-      flex: 1;
-      min-width: 280px;
-    }
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    input, textarea, select {
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-    }
-    .cta-strip {
-      background-color: #d90000;
-      padding: 2rem;
-      text-align: center;
-      color: #fff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISD Creative Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a; /* Dark Grey/Black */
+            color: #f2f2f2; /* Light Grey */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .btn-primary {
+            @apply bg-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-red-700 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out;
+        }
+        /* New class for the blue button */
+        .btn-blue {
+            @apply bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #1a1a1a; /* Dark Grey/Black */
+            border-bottom: 1px solid #333;
+        }
+        .countdown-timer {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff0000; /* Red */
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        .product-block {
+            @apply bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center text-center;
+        }
+    </style>
 </head>
 <body>
-  <div class="hero">
-    <h1>Creative Power for Fitness Coaches Who Sell.</h1>
-    <button class="btn">Get the Launch Toolkit</button>
-  </div>  <div class="container value-prop">
-    <div class="value-block">Plug & play design systems</div>
-    <div class="value-block">Built to convert, not just look pretty</div>
-    <div class="value-block">Designed for digital fitness brands</div>
-  </div>  <div class="container">
-    <h2>Launch Toolkit Preview</h2>
-    <p>[Image mockup + Short Benefit List]</p>
-  </div>  <div class="cta-strip">
-    <h2>Done wasting time on launches that flop? Let’s fix it.</h2>
-    <button class="btn">Work With Us</button>
-  </div>  <div class="container about">
-    <h2>Who We Are</h2>
-    <p>We’re a team of creative nerds helping fitness creators turn digital ideas into real revenue.</p>
-    <h3>Why ISD Creative</h3>
-    <ul>
-      <li>Results-focused</li>
-      <li>Templates that convert</li>
-      <li>Systems that save time</li>
-    </ul>
-  </div>  <div class="container services">
-    <h2>Services / Featured Products</h2>
-    <div class="split">
-      <div>
-        <h3>Launch Toolkit</h3>
-        <p>[Image + mini description + link to DM or calendar]</p>
-      </div>
-      <div>
-        <h3>Custom Creative Projects</h3>
-        <p>Branding kits, page design, reels, etc.</p>
-      </div>
-    </div>
-  </div>  <div class="container contact">
-    <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="IG Handle (optional)">
-      <select>
-        <option>Toolkit</option>
-        <option>Custom Project</option>
-        <option>General Q</option>
-      </select>
-      <textarea placeholder="Your Message"></textarea>
-      <button class="btn" type="submit">Send</button>
-    </form>
-  </div>  <div class="container">
-    <p>DM us @isdcreative to get started instantly.</p>
-  </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav py-4">
+        <div class="container flex justify-between items-center">
+            <div class="text-2xl font-bold text-red-600">ISD Creative</div>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#home" class="hover:text-red-600 transition duration-300">Home</a>
+                <a href="#about" class="hover:text-red-600 transition duration-300">About</a>
+                <a href="#store" class="hover:text-red-600 transition duration-300">Store</a>
+                <a href="#free-offer" class="hover:text-red-600 transition duration-300">Free Offer</a>
+                <a href="#purchase" class="hover:text-red-600 transition duration-300">Purchase</a>
+            </div>
+            <a href="#store" class="btn-primary">🔥 Shop Now</a>
+        </div>
+    </nav>
+
+    <!-- PAGE 1: Welcome / Home -->
+    <section id="home" class="min-h-screen flex items-center justify-center text-center bg-gray-900 py-20 relative overflow-hidden">
+        <div class="relative z-10 container">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 text-white">
+                Built for Coaches Who <span class="text-red-600">Sell More Than Motivation.</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 text-gray-300">
+                Turn your content into clients with plug-and-play tools built for fitness creators.
+            </p>
+            <a href="#store" class="btn-primary text-xl">Explore All Products</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section (Pain + Dream Outcome) -->
+    <section class="py-20 bg-gray-800">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-12 text-white">
+                Your content should <span class="text-red-600">sell for you</span> — not just get likes.
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <p class="text-lg mb-2 text-gray-300">Posting daily but getting no sales?</p>
+                    <p class="text-xl font-semibold text-red-400">→ Our content planner fixes that.</p>
+                </div>
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <p class="text-lg mb-2 text-gray-300">Launching without a plan?</p>
+                    <p class="text-xl font-semibold text-red-400">→ Our toolkit gives you a strategy.</p>
+                </div>
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <p class="text-lg mb-2 text-gray-300">Burned out from guesswork?</p>
+                    <p class="text-xl font-semibold text-red-400">→ Automate content, convert with purpose.</p>
+                </div>
+            </div>
+            <div class="mt-12">
+                <a href="#store" class="btn-secondary text-lg">Start with the 30-Day Planner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOMO / Scarcity Section -->
+    <section class="py-20 bg-black text-center">
+        <div class="container">
+            <h2 class="text-4xl font-bold mb-6 text-white">
+                Coaches are scaling in real-time — <span class="text-red-600">are you next?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Over 1,000+ downloads in the last 30 days. Access closes when this timer hits zero.
+            </p>
+            <div id="countdown" class="countdown-timer mb-10"></div>
+            <a href="#store" class="btn-primary text-xl">Claim My Spot Now</a>
+        </div>
+    </section>
+
+    <!-- Social Proof (Testimonials / Reviews) -->
+    <section class="py-20 bg-gray-800">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-12 text-white">
+                They planned it. They launched. <span class="text-red-600">They sold.</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <p class="text-lg italic text-gray-300">"Made my first $2k digital week — all from one tool."</p>
+                    <p class="font-semibold text-red-400 mt-4">- Satisfied Coach A</p>
+                </div>
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <p class="text-lg italic text-gray-300">"It gave me a full month of posts AND the launch plan. I just followed it."</p>
+                    <p class="font-semibold text-red-400 mt-4">- Happy Creator B</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: About Us -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-8 text-white">
+                We Don’t Just Build Tools — We Build <span class="text-red-600">Creators Who Sell.</span>
+            </h2>
+            <p class="text-lg mb-6 text-gray-300 leading-relaxed">
+                ISD Creative was built for one reason: to help coaches move from content creators to content earners.
+                We craft battle-tested, plug-and-play systems for people tired of spinning their wheels. No theory.
+                No fluff. Just real digital growth.
+            </p>
+            <h3 class="text-2xl font-semibold mb-6 text-white">Our Mission:</h3>
+            <p class="text-lg text-gray-300 mb-10 leading-relaxed">
+                Empowering fitness creators to own their audience, automate their sales, and scale beyond 1:1 coaching.
+            </p>
+            <a href="#store" class="btn-primary text-lg">Browse Our Tools</a>
+        </div>
+    </section>
+
+    <!-- PAGE 3: The Store (Product Listings) -->
+    <section id="store" class="py-20 bg-black">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-6 text-white">
+                Digital Tools That <span class="text-red-600">Sell for You.</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-12">
+                Made to launch fast, grow faster.
+            </p>
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Product 1: 30-Day Content Planner -->
+                <div class="product-block">
+                    <h3 class="text-3xl font-bold mb-4 text-red-500">30-Day Content Planner</h3>
+                    <p class="text-lg text-gray-300 mb-4">
+                        Your next month of content — done. Strategic, optimized, and built to convert.
+                    </p>
+                    <p class="text-red-400 font-semibold mb-6">Only 50 slots left this month.</p>
+                    <a href="#" class="btn-primary text-lg">Get the Planner Now</a>
+                </div>
+                <!-- Product 2: Launch Toolkit for Creators -->
+                <div class="product-block">
+                    <h3 class="text-3xl font-bold mb-4 text-red-500">Launch Toolkit for Creators</h3>
+                    <p class="text-lg text-gray-300 mb-4">
+                        Everything you need to prep, hype, and launch your digital product in 7 days.
+                    </p>
+                    <p class="text-red-400 font-semibold mb-6">Sale ends in 24 hours.</p>
+                    <a href="#" class="btn-primary text-lg">Grab the Launch Kit</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: Lead Magnet / Free Resource Funnel -->
+    <section id="free-offer" class="py-20 bg-gray-800">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-6 text-white">
+                Free 7-Day Offer Builder — <span class="text-red-600">Get Paid to Post.</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-10">
+                Build an irresistible digital offer in 7 days — without guesswork.
+            </p>
+            <div class="grid md:grid-cols-2 gap-10 text-left">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Pain Points:</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+                        <li>Don’t know what to sell?</li>
+                        <li>Stuck copying other coaches?</li>
+                        <li>Feel like you’re launching to crickets?</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Dream Outcomes:</h3>
+                    <ul class="list-disc list-inside text-lg text-gray-300 space-y-2">
+                        <li>Build your own original, high-converting offer.</li>
+                        <li>Validate it before launch.</li>
+                        <li>Start pre-selling in under a week.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Removed the email writing form -->
+            <p class="text-sm text-red-400 mt-6">This free tool won’t stay free forever.</p>
+        </div>
+    </section>
+
+    <!-- NEW PAGE: Purchase/External Link -->
+    <section id="purchase" class="min-h-screen flex items-center justify-center text-center bg-gray-900 py-20">
+        <div class="container">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">
+                Ready to transform your business?
+            </h2>
+            <p class="text-xl md:text-2xl mb-12 text-gray-300">
+                Click below to secure your access to our exclusive offerings.
+            </p>
+            <!-- Changed the button color to blue using btn-blue class -->
+            <a href="https://subscribepage.io/jTFOWc?fbclid=PAZXh0bgNhZWUCMTEAAacV6XTeUZOIk7wjX88KYwINfRzczoUrzQqBA7ycVL1xSikrPPlm4nBKDKR0mQ_aem_mIZoE3ayd4AscVQDk3-jxw" target="_blank" class="btn-blue text-2xl px-10 py-5">
+                Go to Purchase Page
+            </a>
+            <p class="text-md text-gray-500 mt-8">
+                (This link will open in a new tab)
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer Logic
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const now = new Date();
+            // Set the end date for the countdown (e.g., 24 hours from now)
+            const endDate = new Date(now.getTime() + (24 * 60 * 60 * 1000)); // 24 hours in milliseconds
+
+            const interval = setInterval(() => {
+                const currentTime = new Date().getTime();
+                const distance = endDate - currentTime;
+
+                // Calculate time units
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result
+                countdownElement.innerHTML = ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')};
+
+                // If the countdown is over, stop the timer
+                if (distance < 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        }
+
+        // Start the countdown when the page loads
+        window.onload = startCountdown;
+    </script>
 </body>
 </html>
