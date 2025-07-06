@@ -19,7 +19,7 @@
         .bg-red-600 {
             background-color: #dc2626; /* Tailwind red */
         }
-        .hover:bg-red-700:hover {
+        .hover\:bg-red-700:hover {
             background-color: #b91c1c; /* Darker red on hover */
         }
         .bg-gray-800 {
@@ -51,7 +51,6 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- Sticky Navigation -->
     <nav class="sticky-nav bg-gray-900 shadow-lg py-4 px-6 md:px-12 flex justify-between items-center rounded-b-lg">
         <div class="text-2xl font-bold text-red-500">ISD Creative</div>
         <div class="hidden md:flex space-x-8">
@@ -64,13 +63,11 @@
             <i class="fa-solid fa-fire text-white"></i>
             <span>Shop Now</span>
         </a>
-        <!-- Mobile menu button -->
         <button class="md:hidden text-gray-300 text-2xl" onclick="toggleMobileMenu()">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
 
-    <!-- Mobile Menu (Hidden by default) -->
     <div id="mobile-menu" class="hidden md:hidden bg-gray-900 py-4 px-6 rounded-b-lg">
         <a href="#home" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">Home</a>
         <a href="#about" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">About</a>
@@ -78,16 +75,13 @@
         <a href="#free-offer" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">Free Offer</a>
     </div>
 
-    <!-- PAGE 1: Welcome / Home -->
     <section id="home" class="relative min-h-screen flex items-center justify-center text-center p-6 md:p-12 bg-gray-900 overflow-hidden">
-        <!-- Background elements for dynamic visual effect -->
         <div class="absolute inset-0 z-0 opacity-20">
             <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-red-500 rounded-full mix-blend-screen filter blur-xl animate-pulse"></div>
             <div class="absolute bottom-1/3 right-1/3 w-64 h-64 bg-gray-700 rounded-full mix-blend-screen filter blur-xl animate-pulse delay-75"></div>
             <div class="absolute top-1/2 left-1/2 w-56 h-56 bg-red-700 rounded-full mix-blend-screen filter blur-xl animate-pulse delay-150"></div>
         </div>
 
-        <!-- Dynamic Sales Notifications (Mock) -->
         <div class="absolute top-0 left-0 w-full flex justify-around p-4 z-10">
             <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 0s;">New sale! Content Planner</div>
             <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 2s;">Toolkit purchased!</div>
@@ -108,7 +102,6 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section class="py-16 md:py-24 bg-gray-800 text-center p-6 md:p-12">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-bold mb-12 text-white">
@@ -134,7 +127,6 @@
         </div>
     </section>
 
-    <!-- FOMO / Scarcity Section (Simplified) -->
     <section class="py-16 md:py-24 bg-gray-900 text-center p-6 md:p-12">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">
@@ -149,7 +141,6 @@
         </div>
     </section>
 
-    <!-- Social Proof (Testimonials / Reviews) -->
     <section class="py-16 md:py-24 bg-gray-800 p-6 md:p-12">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-3xl md:text-5xl font-bold mb-12 text-white">
@@ -160,19 +151,18 @@
                     <p class="text-gray-300 italic mb-4 text-lg">
                         "Made my first $2k digital week — all from one tool."
                     </p>
-                    <p class="font-semibold text-red-500">- Satisfied Coach A</p>
+                    <p class="font-semibold text-red-500">- Andy Smith</p>
                 </div>
                 <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700 transform hover:scale-105 transition duration-300">
                     <p class="text-gray-300 italic mb-4 text-lg">
                         "It gave me a full month of posts AND the launch plan. I just followed it."
                     </p>
-                    <p class="font-semibold text-red-500">- Empowered Creator B</p>
+                    <p class="font-semibold text-red-500">- Jessica Miller</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PAGE 2: About Us -->
     <section id="about" class="py-16 md:py-24 bg-gray-900 text-center p-6 md:p-12">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-bold mb-8 text-white">
@@ -193,7 +183,6 @@
         </div>
     </section>
 
-    <!-- PAGE 3: The Store (Product Listings) -->
     <section id="store" class="py-16 md:py-24 bg-gray-800 p-6 md:p-12">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">
@@ -204,7 +193,6 @@
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Product Block 1: 30-Day Content Planner -->
                 <div class="bg-gray-900 p-8 rounded-lg shadow-xl border-t-4 border-red-500 transform hover:scale-105 transition duration-300">
                     <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">30-Day Content Planner</h3>
                     <p class="text-gray-300 mb-6 text-lg">
@@ -218,7 +206,6 @@
                     </a>
                 </div>
 
-                <!-- Product Block 2: Launch Toolkit for Creators -->
                 <div class="bg-gray-900 p-8 rounded-lg shadow-xl border-t-4 border-red-500 transform hover:scale-105 transition duration-300">
                     <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">Launch Toolkit for Creators</h3>
                     <p class="text-gray-300 mb-6 text-lg">
@@ -235,7 +222,6 @@
         </div>
     </section>
 
-    <!-- PAGE 4: Lead Magnet / Free Resource Funnel -->
     <section id="free-offer" class="py-16 md:py-24 bg-gray-900 p-6 md:p-12">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">
@@ -267,7 +253,7 @@
             <div class="bg-gray-800 p-8 rounded-lg shadow-xl border-t-4 border-red-500 mt-10">
                 <h3 class="text-2xl font-bold mb-6 text-white">Claim Your Free Builder:</h3>
                 <p class="text-gray-300 text-lg mb-6">Click the button below to get instant access to our free 7-Day Offer Builder!</p>
-                <a href="https://isdcreative.gumroad.com/" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-10 rounded-full text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://payhip.com/ISDCreative" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-10 rounded-full text-lg shadow-xl transition duration-300 transform hover:scale-105">
                     Get the Builder Now <i class="fas fa-paper-plane ml-2"></i>
                 </a>
                 <p class="text-red-500 text-md mt-6 font-semibold animate-bounce">
@@ -277,7 +263,46 @@
         </div>
     </section>
 
-    <!-- Footer / Purchase Link -->
+    <section id="rewards" class="py-16 md:py-24 bg-gray-900 p-6 md:p-12 text-center">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 text-red-500">Turn Your Content into Credit</h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-12">At ISD Creative, we believe your effort deserves real rewards.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <p class="text-5xl font-bold text-red-500 mb-4">1.</p>
+                    <p class="text-lg text-white">Create & Share content using any ISD Creative product.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <p class="text-5xl font-bold text-red-500 mb-4">2.</p>
+                    <p class="text-lg text-white">Tag @ISD.Creative and use the hashtag #BuiltWithISDC.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <p class="text-5xl font-bold text-red-500 mb-4">3.</p>
+                    <p class="text-lg text-white">Earn points for likes, comments, shares, saves, and more — the more you engage, the higher your tier.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <p class="text-5xl font-bold text-red-500 mb-4">4.</p>
+                    <p class="text-lg text-white">Redeem your points for store credits, exclusive bonuses, and special perks!</p>
+                </div>
+            </div>
+
+            <a href="https://linktr.ee/ISDCRewards" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                Get Started Here <i class="fas fa-arrow-circle-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="final-redirect" class="bg-gray-800 py-12 px-4 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-300">This link will direct you to a new page:</h2>
+            <a href="https://isdcreative.gumroad.com/" target="_blank" class="text-red-500 text-3xl md:text-5xl font-extrabold hover:underline transition duration-300 block mb-4">
+                https://isdcreative.gumroad.com/
+            </a>
+            <p class="text-gray-400 text-sm">Please note you are leaving the ISD Creative Store website.</p>
+        </div>
+    </section>
+
     <footer class="bg-gray-900 py-10 text-center rounded-t-lg p-6 md:p-12">
         <p class="text-gray-300 text-lg mb-4">
             All purchases are securely handled through our platform:
@@ -304,13 +329,4 @@
             });
         });
 
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        // No countdown timer function needed anymore
-    </script>
-</body>
-</html>
+        // Mobile menu toggle
