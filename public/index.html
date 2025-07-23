@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISD Creative Store</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        .text-red-500 {
+            color: #ef4444;
+        }
+        .bg-red-600 {
+            background-color: #dc2626;
+        }
+        .hover\:bg-red-700:hover {
+            background-color: #b91c1c;
+        }
+        .bg-gray-800 {
+            background-color: #2d3748;
+        }
+        .bg-gray-900 {
+            background-color: #1a202c;
+        }
+        .border-red-500 {
+            border-color: #ef4444;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; }
+            90% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+        .sale-notification {
+            animation: slideIn 8s infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        #checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        .checkout-container {
+            background-color: #1a202c;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+        }
+        .StripeElement {
+            box-sizing: border-box;
+            height: 40px;
+            padding: 10px 12px;
+            border: 1px solid #2d3748;
+            border-radius: 4px;
+            background-color: #2d3748;
+            color: #f0f0f0;
+            margin: 10px 0 20px 0;
+        }
+        .StripeElement--focus {
+            border-color: #ef4444;
+        }
+        .StripeElement--invalid {
+            border-color: #fa755a;
+        }
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="sticky-nav bg-gray-900 shadow-lg py-4 px-6 md:px-12 flex justify-between items-center rounded-b-lg">
+        <div class="text-2xl font-bold text-red-500">ISD Creative</div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-gray-300 hover:text-red-500 transition duration-300 font-semibold">Home</a>
+            <a href="#about" class="text-gray-300 hover:text-red-500 transition duration-300 font-semibold">About</a>
+            <a href="#store" class="text-gray-300 hover:text-red-500 transition duration-300 font-semibold">Store</a>
+            <a href="#free-offer" class="text-gray-300 hover:text-red-500 transition duration-300 font-semibold">Free Offer</a>
+        </div>
+        <a href="#store" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-lg flex items-center space-x-2">
+            <i class="fa-solid fa-fire text-white"></i>
+            <span>Shop Now</span>
+        </a>
+        <button class="md:hidden text-gray-300 text-2xl" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 py-4 px-6 rounded-b-lg">
+        <a href="#home" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">Home</a>
+        <a href="#about" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">About</a>
+        <a href="#store" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">Store</a>
+        <a href="#free-offer" class="block text-gray-300 hover:text-red-500 py-2 font-semibold">Free Offer</a>
+    </div>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center p-6 md:p-12 bg-gray-900 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-48 h-48 bg-red-500 rounded-full mix-blend-screen filter blur-xl animate-pulse"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-64 h-64 bg-gray-700 rounded-full mix-blend-screen filter blur-xl animate-pulse delay-75"></div>
+            <div class="absolute top-1/2 left-1/2 w-56 h-56 bg-red-700 rounded-full mix-blend-screen filter blur-xl animate-pulse delay-150"></div>
+        </div>
+
+        <div class="absolute top-0 left-0 w-full flex justify-around p-4 z-10">
+            <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 0s;">New sale! Content Planner</div>
+            <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 2s;">Toolkit purchased!</div>
+            <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 4s;">Planner downloaded!</div>
+            <div class="sale-notification bg-red-600 text-white text-xs px-3 py-1 rounded-full shadow-md" style="--delay: 6s;">Offer builder claimed!</div>
+        </div>
+
+        <div class="relative z-20 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white">
+                Built for Coaches Who <span class="text-red-500">Sell More Than Motivation.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-8">
+                Turn your content into clients with plug-and-play tools built for fitness creators.
+            </p>
+            <a href="#store" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                Explore All Products <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-800 text-center p-6 md:p-12">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-white">
+                Your content should <span class="text-red-500">sell for you</span> — not just get likes.
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700 transform hover:scale-105 transition duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-red-500">Posting daily but getting no sales?</h3>
+                    <p class="text-gray-300">Our content planner fixes that, turning engagement into income.</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700 transform hover:scale-105 transition duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-red-500">Launching without a plan?</h3>
+                    <p class="text-gray-300">Our toolkit gives you a strategy, ensuring every launch is a success.</p>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-700 transform hover:scale-105 transition duration-300">
+                    <h3 class="text-xl md:text-2xl font-semibold mb-4 text-red-500">Burned out from guesswork?</h3>
+                    <p class="text-gray-300">Automate content, convert with purpose, and reclaim your time.</p>
+                </div>
+            </div>
+            <a href="#store" class="mt-12 inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300 transform hover:scale-105">
+                Start with the 30-Day Planner <i class="fas fa-calendar-alt ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="store" class="py-16 md:py-24 bg-gray-800 p-6 md:p-12">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">
+                Digital Tools That <span class="text-red-500">Sell for You.</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 mb-12">
+                Made to launch fast, grow faster.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="product-card bg-gray-900 p-8 rounded-lg shadow-xl border-t-4 border-red-500 transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">30-Day Content Planner</h3>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        Your next month of content — done. Strategic, optimized, and built to convert.
+                    </p>
+                    <p class="text-red-500 font-semibold mb-6 text-xl animate-pulse">
+                        <i class="fas fa-exclamation-triangle mr-2"></i> Only 50 slots left this month!
+                    </p>
+                    <p class="text-3xl font-bold text-white mb-6">$49.99</p>
+                    <button onclick="openCheckout('30-Day Content Planner', 4999)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300">
+                        Buy Now <i class="fas fa-shopping-cart ml-2"></i>
+                    </button>
+                </div>
+
+                <div class="product-card bg-gray-900 p-8 rounded-lg shadow-xl border-t-4 border-red-500 transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">Launch Toolkit for Creators</h3>
+                    <p class="text-gray-300 mb-6 text-lg">
+                        Everything you need to prep, hype, and launch your digital product in 7 days.
+                    </p>
+                    <p class="text-red-500 font-semibold mb-6 text-xl animate-pulse">
+                        <i class="fas fa-hourglass-half mr-2"></i> Demand increasing daily, price going up soon!!
+                    </p>
+                    <p class="text-3xl font-bold text-white mb-6">$79.99</p>
+                    <button onclick="openCheckout('Launch Toolkit for Creators', 7999)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300">
+                        Buy Now <i class="fas fa-shopping-cart ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal">
+        <div class="checkout-container">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Complete Your Purchase</h2>
+                <button onclick="closeCheckout()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-white" id="product-title">Product</h3>
+                <p class="text-xl font-bold text-red-500" id="product-price">$0.00</p>
+            </div>
+            
+            <form id="payment-form">
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white" required placeholder="your@email.com">
+                </div>
+                
+                <div id="card-element" class="mb-4">
+                    <!-- Stripe Card Element will be inserted here -->
+                </div>
+                
+                <div id="card-errors" role="alert" class="text-red-500 mb-4"></div>
+                
+                <button id="submit-button" type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-xl transition duration-300">
+                    Pay Now <i class="fas fa-lock ml-2"></i>
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center text-gray-400 text-sm">
+                <p>Secure payment powered by Stripe</p>
+                <div class="flex justify-center mt-2">
+                    <img src="https://stripe.com/img/v3/payments/overview/photos/stripe-logo.png" alt="Stripe" class="h-8">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-lg max-w-md text-center">
+            <div class="text-green-500 text-6xl mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-2">Payment Successful!</h2>
+            <p class="text-gray-300 mb-6">Thank you for your purchase. Your order has been processed successfully.</p>
+            <p class="text-gray-300 mb-6" id="success-details"></p>
+            <button onclick="closeSuccessModal()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 py-10 text-center rounded-t-lg p-6 md:p-12">
+        <p class="text-gray-300 text-lg mb-4">
+            All purchases are securely handled through Stripe.
+        </p>
+        <div class="flex justify-center mb-6">
+            <img src="https://stripe.com/img/v3/payments/overview/photos/stripe-logo.png" alt="Stripe" class="h-10">
+        </div>
+        <p class="text-gray-500 text-sm">&copy; 2025 ISD Creative. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Stripe with your publishable key
+        const stripe = Stripe('pk_test_51P9Z2tSEJ3wv8R1B1JYJ8X3Z3Q2X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3X9Q3');
+        let elements;
+        let checkoutProduct = {};
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Open checkout modal
+        function openCheckout(productName, price) {
+            checkoutProduct = {
+                name: productName,
+                price: price,
+                formattedPrice: `$${(price / 100).toFixed(2)}`
+            };
+            
+            document.getElementById('product-title').textContent = productName;
+            document.getElementById('product-price').textContent = `$${(price / 100).toFixed(2)}`;
+            
+            // Show modal
+            document.getElementById('checkout-modal').style.display = 'block';
+            
+            // Initialize Stripe Elements if not already done
+            if (!elements) {
+                initializeStripeElements();
+            }
+        }
+
+        // Close checkout modal
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        // Initialize Stripe Elements
+        function initializeStripeElements() {
+            const appearance = {
+                theme: 'night',
+                variables: {
+                    colorPrimary: '#ef4444',
+                    colorBackground: '#1a202c',
+                    colorText: '#f0f0f0',
+                    colorDanger: '#ff5252',
+                    fontFamily: 'Inter, sans-serif',
+                }
+            };
+            
+            elements = stripe.elements({ appearance });
+            const cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+            
+            // Handle real-time validation errors from the card Element
+            cardElement.on('change', function(event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+            
+            // Handle form submission
+            const form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Disable submit button to prevent multiple submissions
+                document.getElementById('submit-button').disabled = true;
+                
+                const email = document.getElementById('email').value;
+                
+                // Create payment intent on the server and confirm the payment
+                createPaymentIntent(email)
+                    .then(clientSecret => {
+                        return stripe.confirmCardPayment(clientSecret, {
+                            payment_method: {
+                                card: cardElement,
+                                billing_details: {
+                                    email: email
+                                }
+                            }
+                        });
+                    })
+                    .then(result => {
+                        if (result.error) {
+                            // Show error to your customer
+                            document.getElementById('card-errors').textContent = result.error.message;
+                            document.getElementById('submit-button').disabled = false;
+                        } else {
+                            if (result.paymentIntent.status === 'succeeded') {
+                                // Show a success message to your customer
+                                showSuccess(result.paymentIntent);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('card-errors').textContent = 'An error occurred. Please try again.';
+                        document.getElementById('submit-button').disabled = false;
+                    });
+            });
+        }
+
+        // Create payment intent on the server
+        async function createPaymentIntent(email) {
+            try {
+                const response = await fetch('/create-payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        product: checkoutProduct.name,
+                        amount: checkoutProduct.price,
+                        currency: 'usd',
+                        email: email
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                return data.clientSecret;
+            } catch (error) {
+                console.error('Error creating payment intent:', error);
+                throw error;
+            }
+        }
+
+        // Show success message
+        function showSuccess(paymentIntent) {
+            closeCheckout();
+            
+            const successDetails = document.getElementById('success-details');
+            successDetails.innerHTML = `
+                <p>Product: ${checkoutProduct.name}</p>
+                <p>Amount: ${checkoutProduct.formattedPrice}</p>
+                <p class="text-sm text-gray-400 mt-4">A receipt has been sent to ${paymentIntent.receipt_email}</p>
+            `;
+            
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
